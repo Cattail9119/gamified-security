@@ -1,11 +1,11 @@
 # Roadmap
 
 ## Прототип (зараз)
-- [ ] Каркас: Vite + React + TypeScript
-- [ ] Головна: картки курсів з content/courses.json
+- [x] Каркас: Vite + React + TypeScript
+- [x] Головна: картки курсів з content/courses.json
 - [ ] Сторінка курсу: список завдань, статус, XP
 - [ ] Екран завдання: умова, перевірка, підказка, розбір
-- [ ] Три типи завдань: multi-choice, find-in-code, text-answer
+- [ ] Три типи завдань: multi-choice, find-in-code, text-answer 
 - [ ] XP, рівень і прогрес у localStorage
 - [ ] Три тестові завдання (secure-dev, cyber-hygiene, cryptology)
 - [ ] Деплой статичним сайтом
