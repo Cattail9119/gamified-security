@@ -3,11 +3,14 @@
 ## Прототип (зараз)
 - [x] Каркас: Vite + React + TypeScript
 - [x] Головна: картки курсів з content/courses.json
-- [ ] Сторінка курсу: список завдань, статус, XP
-- [ ] Екран завдання: умова, перевірка, підказка, розбір
-- [ ] Три типи завдань: multi-choice, find-in-code, text-answer 
-- [ ] XP, рівень і прогрес у localStorage
-- [ ] Три тестові завдання (secure-dev, cyber-hygiene, cryptology)
+- [x] Сторінка курсу: пронумерований список завдань, статуси, XP
+- [x] Теоретичний блок перед завданням (поле `theory`, кнопка «До завдання»)
+- [x] Екран завдання: умова, перевірка, підказка, розбір
+- [x] Типи завдань: multi-choice, find-in-code, text-answer, pick-email
+- [x] Інтерактивні типи: inbox-triage, scenario, password-lab, injection-sandbox, fill-slots, cipher-lab, hash-check
+- [x] XP, рівень і прогрес у localStorage
+- [x] Кнопка «Скинути прогрес»
+- [x] Практичні завдання для демо: по 3 на курс (secure-dev, cyber-hygiene, cryptology)
 - [ ] Деплой статичним сайтом
 
 ## Потім
