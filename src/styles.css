@@ -337,7 +337,8 @@ form { margin-top: 24px; }
   border: 1px solid rgb(255 255 255 / .06);
 }
 .statusbar-label { color: var(--ed-ln); }
-.statusbar-url { flex: 1; min-width: 0; word-break: break-all; }
+.statusbar-url { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.statusbar-url.empty { color: var(--ed-ln); }
 .statusbar-count { margin-left: auto; color: var(--ed-ln); font-variant-numeric: tabular-nums; }
 
 /* scenario */
@@ -451,3 +452,59 @@ form { margin-top: 24px; }
 .hash-val { word-break: break-all; }
 .tamper-toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; cursor: pointer; }
 .tamper-toggle input { accent-color: var(--bad); }
+
+/* Телефон */
+@media (max-width: 600px) {
+  .app-header-inner { padding-top: 8px; padding-bottom: 8px; row-gap: 8px; }
+  .header-right { gap: 16px; }
+  .level { gap: 8px; }
+  .level .progress { width: 64px; }
+  .app-main { padding-top: 20px; padding-bottom: 48px; }
+  h1 { font-size: 22px; }
+  .grid { margin-top: 20px; grid-template-columns: 1fr; }
+  .card { min-height: 0; }
+  .course-summary { margin-top: 20px; }
+
+  .panel { padding: 16px; }
+  form { margin-top: 16px; }
+  .actions .btn { flex: 1; justify-content: center; }
+  .feedback { flex-wrap: wrap; padding: 12px; }
+
+  /* Поля від 16px — інакше iOS збільшує сторінку при фокусі */
+  .text-input, .slot, .slot-steps .slot { font-size: 16px; }
+  .text-input { max-width: none; }
+
+  .code { font-size: 12px; line-height: 22px; }
+  .ln { width: 28px; }
+  .code-line { gap: 12px; padding-right: 12px; }
+
+  /* Листи */
+  .email-card { grid-template-columns: 28px 1fr; gap: 4px 10px; padding: 12px; }
+  .avatar { width: 28px; height: 28px; font-size: 12px; }
+  .email-head { flex-wrap: wrap; row-gap: 0; }
+  .email-from { flex: 1 1 100%; order: 2; }
+  .email-num { order: 1; }
+  .email-addr { display: block; margin-left: 0; overflow-wrap: anywhere; }
+  .verdict { grid-column: 1 / -1; }
+  .verdict-btn { flex: 1; height: 40px; }
+  .statusbar {
+    bottom: 0; margin-left: -4px; margin-right: -4px; padding: 8px 12px; font-size: 12px;
+    display: grid; grid-template-columns: 1fr auto; gap: 2px 8px;
+  }
+  .statusbar-url { grid-column: 1 / -1; grid-row: 2; }
+  .statusbar-count { margin-left: 0; }
+
+  /* Сценарій */
+  .scn-bubble, .scn-choice { padding: 12px; }
+  .scn-outcome { padding: 12px 12px 12px 12px; }
+  .scn-points { position: static; display: block; margin-top: 4px; }
+
+  /* Схема й хеші */
+  .diagram { flex-direction: column; }
+  .diagram-node { min-width: 0; }
+  .diagram-arrow { transform: rotate(90deg); }
+  .hash-file { padding: 12px; }
+  .hash-rows { grid-template-columns: 1fr; gap: 0; }
+  .hash-rows dd + dt { margin-top: 4px; }
+  .login-form, .cipher-control { padding: 12px; }
+}

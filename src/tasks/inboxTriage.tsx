@@ -16,8 +16,12 @@ interface Ctx {
   flags: string[];
   disabled: boolean;
   toggle: (id: string) => void;
+  url: string | null;
   showUrl: (url: string | null) => void;
 }
+
+// На сенсорних екранах наведення немає: перше торкання посилання показує адресу, друге — позначає
+const isTouch = () => typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches;
 
 function Marked({ text, ctx }: { text: string; ctx: Ctx }) {
   const nodes: ReactNode[] = [];
@@ -35,9 +39,15 @@ function Marked({ text, ctx }: { text: string; ctx: Ctx }) {
         className={`clue${url ? ' clue-link' : ''}${flagged ? ' flagged' : ''}`}
         aria-pressed={flagged}
         disabled={ctx.disabled}
-        onClick={() => ctx.toggle(id)}
-        onMouseEnter={() => url && ctx.showUrl(url)}
-        onMouseLeave={() => ctx.showUrl(null)}
+        onClick={() => {
+          if (url && isTouch() && ctx.url !== url) {
+            ctx.showUrl(url);
+            return;
+          }
+          ctx.toggle(id);
+        }}
+        onMouseEnter={() => url && !isTouch() && ctx.showUrl(url)}
+        onMouseLeave={() => !isTouch() && ctx.showUrl(null)}
         onFocus={() => url && ctx.showUrl(url)}
         onBlur={() => ctx.showUrl(null)}
       >
@@ -58,6 +68,7 @@ function Workspace({ task, answer, onChange, disabled }: WorkspaceProps<InboxTri
   const ctx: Ctx = {
     flags: answer.flags,
     disabled,
+    url,
     showUrl: setUrl,
     toggle: (id) =>
       onChange({
@@ -114,7 +125,9 @@ function Workspace({ task, answer, onChange, disabled }: WorkspaceProps<InboxTri
       </div>
       <div className="statusbar" aria-live="polite">
         <span className="statusbar-label">Адреса за посиланням</span>
-        <span className="mono statusbar-url">{url ?? '— наведіть курсор на посилання'}</span>
+        <span className={`statusbar-url${url ? ' mono' : ' empty'}`}>
+          {url ?? (isTouch() ? 'торкніться посилання, щоб побачити; повторне торкання позначає його' : 'наведіть курсор на посилання')}
+        </span>
         <span className="statusbar-count">Вердиктів: {decided} з {task.emails.length} · позначок: {answer.flags.length}</span>
       </div>
     </>
