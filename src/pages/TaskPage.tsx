@@ -19,7 +19,7 @@ export default function TaskPage() {
 
   return (
     <>
-      <Link to={`/course/${course.id}`} className="back">← {course.title}</Link>
+      <Link to={`/course/${course.id}`} className="back"><span className="nav-arrow" aria-hidden>←</span> До курсу «{course.title}»</Link>
       {def ? (
         // key — щоб при переході до наступного завдання стан скидався
         <TaskView
@@ -119,8 +119,8 @@ function TaskView({ courseId, task, def, number, total, next }: TaskViewProps) {
       ) : (
         <>
           {task.theory && (
-            <button type="button" className="link-button back-to-theory" onClick={() => setStep('theory')}>
-              ← Повернутися до теорії
+            <button type="button" className="nav-btn back-to-theory" onClick={() => setStep('theory')}>
+              <span className="nav-arrow" aria-hidden>←</span> Повернутися до теорії
             </button>
           )}
 
@@ -162,7 +162,7 @@ function TaskView({ courseId, task, def, number, total, next }: TaskViewProps) {
           )}
 
           {wrongCount > 0 && !finished && (
-            <button type="button" className="link-button quiet" onClick={onReveal}>
+            <button type="button" className="btn btn-reveal" onClick={onReveal}>
               Здатися й показати розбір (без XP)
             </button>
           )}

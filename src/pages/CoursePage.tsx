@@ -19,7 +19,7 @@ export default function CoursePage() {
 
   return (
     <>
-      <Link to="/" className="back">← До курсів</Link>
+      <Link to="/" className="back"><span className="nav-arrow" aria-hidden>←</span> До курсів</Link>
       <h1>{course.title}</h1>
       <p className="lead">{course.description}</p>
 

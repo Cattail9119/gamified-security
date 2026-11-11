@@ -23,8 +23,8 @@ function Workspace({ task, answer, onChange, disabled }: WorkspaceProps<Scenario
         return (
           <section className="scn-step" key={i}>
             <div className="scn-label">
-              Момент {i + 1} з {total}
-              {step.title ? ` · ${step.title}` : ''}
+              <span className="scn-label-num">Момент {i + 1} з {total}</span>
+              {step.title && <span className="scn-label-title">· {step.title}</span>}
             </div>
             <div className="scn-bubble">
               <RichText text={step.situation} />
@@ -40,6 +40,7 @@ function Workspace({ task, answer, onChange, disabled }: WorkspaceProps<Scenario
             ) : (
               !disabled && (
                 <div className="scn-choices" role="group" aria-label="Ваше рішення">
+                  <p className="scn-ask">Що ви зробите? Оберіть варіант:</p>
                   {step.choices.map((c, k) => (
                     <button
                       type="button"
