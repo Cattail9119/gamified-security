@@ -32,10 +32,12 @@ function Workspace({ task, answer, onChange, disabled }: WorkspaceProps<Scenario
             {chosen ? (
               <>
                 <div className="scn-chosen">{chosen.text}</div>
-                <div className={`scn-outcome tone-${tone}`}>
-                  <RichText text={chosen.outcome} />
-                  <span className="scn-points mono">+{chosen.points}</span>
-                </div>
+                {allDone && (
+                  <div className={`scn-outcome tone-${tone}`}>
+                    <RichText text={chosen.outcome} />
+                    <span className="scn-points mono">+{chosen.points}</span>
+                  </div>
+                )}
               </>
             ) : (
               !disabled && (
