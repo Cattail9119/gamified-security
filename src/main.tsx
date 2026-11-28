@@ -9,7 +9,7 @@ import '@fontsource/ibm-plex-sans/600.css';
 import '@fontsource/ibm-plex-mono/400.css';
 import './styles.css';
 
-// HashRouter — щоб маршрути працювали на статичному хостингу без налаштування сервера
+// HashRouter – щоб маршрути працювали на статичному хостингу без налаштування сервера
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <HashRouter>

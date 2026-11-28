@@ -12,6 +12,12 @@ import { injectionSandbox } from './injectionSandbox';
 import { fillSlots } from './fillSlots';
 import { cipherLab } from './cipherLab';
 import { hashCheck } from './hashCheck';
+import { ordering } from './ordering';
+import { matching } from './matching';
+import { sortBins } from './sortBins';
+import { packetFilter } from './packetFilter';
+import { incidentSim } from './incidentSim';
+import { cliConsole } from './cliConsole';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- тип відповіді в кожного типу свій
 export type AnyTaskTypeDef = TaskTypeDef<any, any>;
@@ -29,9 +35,15 @@ const registry: { [K in TaskType]: TaskTypeDef<Extract<Task, { type: K }>, any> 
   'fill-slots': fillSlots,
   'cipher-lab': cipherLab,
   'hash-check': hashCheck,
+  ordering,
+  matching,
+  'sort-bins': sortBins,
+  'packet-filter': packetFilter,
+  'incident-sim': incidentSim,
+  'cli-console': cliConsole,
 };
 
-/** undefined — якщо в JSON вказано невідомий тип */
+/** undefined – якщо в JSON вказано невідомий тип */
 export function getTaskTypeDef(task: Task): AnyTaskTypeDef | undefined {
   return (registry as Record<string, AnyTaskTypeDef>)[task.type];
 }

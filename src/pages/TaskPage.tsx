@@ -21,7 +21,7 @@ export default function TaskPage() {
     <>
       <Link to={`/course/${course.id}`} className="back"><span className="nav-arrow" aria-hidden>←</span> До курсу «{course.title}»</Link>
       {def ? (
-        // key — щоб при переході до наступного завдання стан скидався
+        // key – щоб при переході до наступного завдання стан скидався
         <TaskView
           key={`${course.id}/${task.id}`}
           courseId={course.id}
@@ -95,6 +95,7 @@ function TaskView({ courseId, task, def, number, total, next }: TaskViewProps) {
 
   return (
     <>
+      {task.module && <div className="task-module-meta">{task.module}</div>}
       <div className="task-meta">
         Завдання {number} з {total} · {def.label} · {task.xp} XP
       </div>

@@ -20,7 +20,7 @@ function Select({ task, n, answer, onChange, disabled }: WorkspaceProps<FillSlot
         onChange(answer.map((x, i) => (i === n - 1 ? v : x)));
       }}
     >
-      <option value="" disabled>— обрати —</option>
+      <option value="" disabled>– обрати –</option>
       {slot.options.map((o, i) => <option key={i} value={i}>{o}</option>)}
     </select>
   );

@@ -58,10 +58,10 @@ function Workspace({ task, answer, onChange, disabled }: WorkspaceProps<Injectio
         </pre>
       </div>
       <div className={`sandbox-result r-${touched ? outcome : 'idle'}`} role="status">
-        {!touched && 'Введіть значення в поля — запит оновлюватиметься на льоту.'}
+        {!touched && 'Введіть значення в поля – запит оновлюватиметься на льоту.'}
         {touched && outcome === 'syntax' && 'Помилка синтаксису SQL: не закрито лапки. Запит не виконано.'}
-        {touched && outcome === 'denied' && 'Запит виконано. Знайдено рядків: 0 — «Невірний логін або пароль».'}
-        {touched && outcome === 'success' && 'Запит повернув рядок користувача admin — вхід виконано без пароля.'}
+        {touched && outcome === 'denied' && 'Запит виконано. Знайдено рядків: 0 – «Невірний логін або пароль».'}
+        {touched && outcome === 'success' && 'Запит повернув рядок користувача admin – вхід виконано без пароля.'}
       </div>
     </div>
   );

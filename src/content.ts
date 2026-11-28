@@ -10,7 +10,8 @@ const taskModules = import.meta.glob<{ default: Task[] }>('../content/tasks/*.js
 const tasksByCourse: Record<string, Task[]> = {};
 for (const [path, mod] of Object.entries(taskModules)) {
   const courseId = path.split('/').pop()!.replace(/\.json$/, '');
-  tasksByCourse[courseId] = mod.default;
+  // Приховані завдання (`hidden: true`) лишаються у файлі, але в інтерфейс не потрапляють
+  tasksByCourse[courseId] = mod.default.filter((t) => !t.hidden);
 }
 
 export function getCourse(id: string): Course | undefined {

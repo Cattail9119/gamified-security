@@ -20,7 +20,7 @@ interface Ctx {
   showUrl: (url: string | null) => void;
 }
 
-// На сенсорних екранах наведення немає: перше торкання посилання показує адресу, друге — позначає
+// На сенсорних екранах наведення немає: перше торкання посилання показує адресу, друге – позначає
 const isTouch = () => typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches;
 
 function Marked({ text, ctx }: { text: string; ctx: Ctx }) {
@@ -84,8 +84,8 @@ function Workspace({ task, answer, onChange, disabled }: WorkspaceProps<InboxTri
   return (
     <>
       <p className="note">
-        Вердикт — для кожного листа. У листах, які вважаєте фішинговими, позначте фрагменти, що викривають підробку.
-        Позначка у безпечному листі — помилка.
+        Вердикт – для кожного листа. У листах, які вважаєте фішинговими, позначте фрагменти, що викривають підробку.
+        Позначка у безпечному листі – помилка.
       </p>
       <div className="emails inbox">
         {task.emails.map((mail, i) => (

@@ -1,13 +1,7 @@
 import type { FindInCodeTask } from '../types/content';
-import { sameSet, type TaskTypeDef, type WorkspaceProps } from './types';
+import { plural, sameSet, type TaskTypeDef, type WorkspaceProps } from './types';
 
-function plural(n: number, one: string, few: string, many: string) {
-  const d = n % 10;
-  const dd = n % 100;
-  if (d === 1 && dd !== 11) return one;
-  if (d >= 2 && d <= 4 && (dd < 12 || dd > 14)) return few;
-  return many;
-}
+const VARIANT_LABEL = { code: 'Код', log: 'Журнал подій', config: 'Конфігурація' } as const;
 
 function Workspace({ task, answer, onChange, disabled }: WorkspaceProps<FindInCodeTask, number[]>) {
   const lines = Array.isArray(task.code) ? task.code : task.code.split('\n');
@@ -18,10 +12,10 @@ function Workspace({ task, answer, onChange, disabled }: WorkspaceProps<FindInCo
       <p className="note">Клацніть по рядку, щоб позначити його. Повторне клацання знімає позначку</p>
       <div className="editor">
         <div className="editor-bar">
-          <span>{lines.length} {plural(lines.length, 'рядок', 'рядки', 'рядків')}</span>
+          <span>{VARIANT_LABEL[task.variant ?? 'code']} · {lines.length} {plural(lines.length, 'рядок', 'рядки', 'рядків')}</span>
           <span className={`marked${answer.length ? ' has' : ''}`}>Позначено: {answer.length}</span>
         </div>
-        <div className="code" role="group" aria-label="Код">
+        <div className="code" role="group" aria-label={VARIANT_LABEL[task.variant ?? 'code']}>
           {lines.map((line, idx) => {
             const n = idx + 1;
             const selected = answer.includes(n);
@@ -53,7 +47,8 @@ export const findInCode: TaskTypeDef<FindInCodeTask, number[]> = {
   feedback: (task, a) => {
     const found = a.filter((n) => task.correctLines.includes(n)).length;
     const extra = a.length - found;
-    return `Знайдено вразливих рядків: ${found} із ${task.correctLines.length}. Зайвих позначок: ${extra}.`;
+    const what = (task.variant ?? 'code') === 'code' ? 'вразливих' : 'потрібних';
+    return `Знайдено ${what} рядків: ${found} із ${task.correctLines.length}. Зайвих позначок: ${extra}.`;
   },
   Workspace,
 };

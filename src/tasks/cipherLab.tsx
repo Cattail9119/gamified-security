@@ -2,7 +2,7 @@ import type { CipherLabTask } from '../types/content';
 import type { TaskTypeDef, WorkspaceProps } from './types';
 
 // Частотний аналіз: учень рахує літери, призначає заміни (шифр → текст), бачить, як проступають слова,
-// і виводить ключ із замін. Повного розшифрування з довільним ключем немає — інакше це знову перебір.
+// і виводить ключ із замін. Повного розшифрування з довільним ключем немає – інакше це знову перебір.
 
 const A = 65;
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
@@ -92,7 +92,7 @@ function Workspace({ task, answer, onChange, disabled }: WorkspaceProps<CipherLa
               disabled={disabled}
               onChange={(e) => setMap(selected, e.target.value)}
             >
-              <option value="">—</option>
+              <option value="">–</option>
               {ALPHABET.map((l) => (
                 <option key={l} value={l} disabled={used.has(l) && map[selected] !== l}>{l}</option>
               ))}
@@ -118,7 +118,7 @@ function Workspace({ task, answer, onChange, disabled }: WorkspaceProps<CipherLa
           </ul>
         )}
         {shifts.length > 1 && (
-          <p className="note warn-note">Заміни дають різні зсуви ({shifts.join(', ')}). У шифрі Цезаря зсув для всіх літер однаковий — одна із замін хибна.</p>
+          <p className="note warn-note">Заміни дають різні зсуви ({shifts.join(', ')}). У шифрі Цезаря зсув для всіх літер однаковий – одна із замін хибна.</p>
         )}
       </section>
 
@@ -169,7 +169,7 @@ export const cipherLab: TaskTypeDef<CipherLabTask, CipherLabAnswer> = {
     const k = trueKey(task);
     const wrong = pairs.filter(([c, p]) => shiftOf(c, p) !== k).length;
     if (wrong > 0) return 'Перевірте заміни: чи складаються з них справжні англійські слова?';
-    return 'Заміни правильні — порахуйте зсув між літерою шифровки і літерою тексту.';
+    return 'Заміни правильні – порахуйте зсув між літерою шифровки і літерою тексту.';
   },
   Workspace,
 };

@@ -15,7 +15,7 @@ const poolOf = (s: string) => {
   return Math.max(pool, 1);
 };
 
-/** Орієнтовна ентропія: слово зі словника ≈ 13 біт, решта — випадкові символи. */
+/** Орієнтовна ентропія: слово зі словника ≈ 13 біт, решта – випадкові символи. */
 export function estimateBits(pw: string): number {
   if (!pw) return 0;
   const parts = pw.split(/[\s\-_.,;:+=]+/).filter(Boolean);
@@ -72,7 +72,7 @@ export function evaluate(task: PasswordLabTask, pw: string) {
     { id: 'len', label: `Щонайменше ${task.minLength} символів`, ok: pw.length >= task.minLength },
     { id: 'personal', label: 'Без особистих даних із профілю', ok: pw.length > 0 && !personal },
     { id: 'common', label: 'Без поширених слів, послідовностей і повторів (123, qwe, aaa)', ok: pw.length > 0 && !common },
-    { id: 'time', label: `Орієнтовний час підбору — від ${task.minYears} років`, ok: years >= task.minYears },
+    { id: 'time', label: `Орієнтовний час підбору – від ${task.minYears} років`, ok: years >= task.minYears },
   ];
   return { rules, bits, years };
 }
@@ -105,7 +105,7 @@ function Workspace({ task, answer, onChange, disabled }: WorkspaceProps<Password
         <div className={`pw-meter-fill${years >= task.minYears ? ' ok' : ''}`} style={{ transform: `scaleX(${meter})` }} />
       </div>
       <div className="pw-time">
-        Час підбору: <strong className="mono">{answer ? formatTime(years) : '—'}</strong>
+        Час підбору: <strong className="mono">{answer ? formatTime(years) : '–'}</strong>
         <span className="muted"> · ≈ {Math.round(bits)} біт, 10 млрд спроб/с</span>
       </div>
       <ul className="pw-rules">

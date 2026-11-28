@@ -37,7 +37,7 @@ function load(): ProgressData {
       if (parsed && typeof parsed.tasks === 'object' && parsed.tasks) return parsed;
     }
   } catch {
-    // пошкоджені дані або недоступне сховище — починаємо з нуля
+    // пошкоджені дані або недоступне сховище – починаємо з нуля
   }
   return { tasks: {} };
 }
@@ -64,7 +64,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
     } catch {
-      // сховище недоступне — прогрес живе лише до перезавантаження
+      // сховище недоступне – прогрес живе лише до перезавантаження
     }
   }, [data]);
 

@@ -30,10 +30,10 @@ function Workspace({ task, answer, onChange, disabled }: WorkspaceProps<HashChec
             </header>
             <pre className="hash-content">{f.content.join('\n')}</pre>
             <dl className="hash-rows">
-              <dt>Від Віталія</dt>
+              <dt>{task.referenceLabel ?? 'Від Віталія'}</dt>
               <dd className="mono hash-val">{f.sha256}</dd>
               <dt>Обчислено</dt>
-              <dd className="mono hash-val">{h ?? '—'}</dd>
+              <dd className="mono hash-val">{h ?? '–'}</dd>
             </dl>
             <label className={`tamper-toggle${marked ? ' on' : ''}`}>
               <input type="checkbox" checked={marked} disabled={disabled} onChange={() => mark(i)} />
